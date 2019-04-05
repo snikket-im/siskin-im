@@ -22,12 +22,14 @@
 import UIKit
 import TigaseSwift
 
-class MucChatOccupantsTableViewController: UITableViewController, EventHandler {
+class MucChatOccupantsTableViewController: CustomTableViewController, EventHandler {
     
     var xmppService:XmppService!;
     
     var account: BareJID!;
     var room: Room!;
+    
+    var mentionOccupant: ((String)->Void)? = nil;
     
     override func viewDidLoad() {
         xmppService = (UIApplication.shared.delegate as! AppDelegate).xmppService;
@@ -72,9 +74,9 @@ class MucChatOccupantsTableViewController: UITableViewController, EventHandler {
         let occupant = room.presences[nickname];
         cell.nicknameLabel.text = nickname;
         if occupant?.jid != nil {
-            cell.avatarStatusView.setAvatar(xmppService.avatarManager.getAvatar(for: occupant!.jid!.bareJid, account: account));
+            cell.avatarStatusView.updateAvatar(manager: self.xmppService.avatarManager, for: account, with: occupant?.jid?.bareJid, name: nickname, orDefault: xmppService.avatarManager.defaultAvatar);
         } else {
-            cell.avatarStatusView.setAvatar(xmppService.avatarManager.defaultAvatar);
+            cell.avatarStatusView.updateAvatar(manager: self.xmppService.avatarManager, for: account, with: occupant?.jid?.bareJid, name: nickname, orDefault: xmppService.avatarManager.defaultAvatar);
         }
         cell.avatarStatusView.setStatus(occupant?.presence.show);
         cell.statusLabel.text = occupant?.presence.status;
@@ -84,6 +86,18 @@ class MucChatOccupantsTableViewController: UITableViewController, EventHandler {
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return false;
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true);
+        
+        let nicknames = Array(room.presences.keys).sorted();
+        let nickname = nicknames[indexPath.row];
+
+        if let fn = mentionOccupant {
+            fn(nickname);
+        }
+        self.navigationController?.popViewController(animated: true);
     }
 
     /*
@@ -109,4 +123,11 @@ class MucChatOccupantsTableViewController: UITableViewController, EventHandler {
         }
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let invitationController = segue.destination as? InviteViewController ?? (segue.destination as? UINavigationController)?.visibleViewController as? InviteViewController {
+            invitationController.xmppService = xmppService;
+            invitationController.room = self.room;
+        }
+    }
+    
 }

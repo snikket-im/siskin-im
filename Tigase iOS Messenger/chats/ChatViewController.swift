@@ -40,8 +40,14 @@ class ChatViewController : BaseChatViewControllerWithContextMenuAndToolbar, Base
     @IBOutlet var progressBar: UIProgressView!;
     var imagePickerDelegate: BaseChatViewController_ShareImagePickerDelegate?;
     
+    lazy var loadChatInfo:DBStatement! = try? self.dbConnection.prepareStatement("SELECT name FROM roster_items WHERE account = :account AND jid = :jid");
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let params:[String:Any?] = ["account" : account, "jid" : jid.bareJid];
+        navigationItem.title = try! loadChatInfo.findFirst(params) { cursor in cursor["name"] } ?? jid.stringValue;
+        
         dataSource = ChatDataSource(controller: self);
         contextMenuDelegate = self;
         scrollDelegate = self;
@@ -76,7 +82,6 @@ class ChatViewController : BaseChatViewControllerWithContextMenuAndToolbar, Base
     func getTextOfSelectedRows(paths: [IndexPath], withTimestamps: Bool, handler: (([String]) -> Void)?) {
         let items: [ChatViewItem] = paths.map({ index in dataSource.getItem(for: index) })
             .filter { (it) -> Bool in it != nil }
-            .map({(it) in it! })
             .sorted { (it1, it2) -> Bool in
                 it1.timestamp.compare(it2.timestamp) == .orderedAscending;
             };
@@ -169,6 +174,7 @@ class ChatViewController : BaseChatViewControllerWithContextMenuAndToolbar, Base
             label.textAlignment = .center;
             label.transform = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: 0);
             label.sizeToFit();
+            label.textColor = Appearance.current.textColor();
             self.tableView.backgroundView = label;
         }
         return dataSource.numberOfMessages;
@@ -180,7 +186,7 @@ class ChatViewController : BaseChatViewControllerWithContextMenuAndToolbar, Base
         let id = incoming ? "ChatTableViewCellIncoming" : "ChatTableViewCellOutgoing";
         let cell: ChatTableViewCell = tableView.dequeueReusableCell(withIdentifier: id, for: indexPath) as! ChatTableViewCell;
         cell.transform = cachedDataSource.inverted ? CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: 0) : CGAffineTransform.identity;
-        cell.avatarView?.image = self.xmppService.avatarManager.getAvatar(for: self.jid.bareJid, account: self.account);
+        cell.avatarView?.updateAvatar(manager: self.xmppService.avatarManager, for: account, with: jid.bareJid, name: self.titleView.name, orDefault: self.xmppService.avatarManager.defaultAvatar);
         cell.setValues(data: item.data, ts: item.timestamp, id: item.id, state: item.state, preview: item.preview, downloader: self.downloadPreview);
         cell.setNeedsUpdateConstraints();
         cell.updateConstraintsIfNeeded();
@@ -249,6 +255,7 @@ class ChatViewController : BaseChatViewControllerWithContextMenuAndToolbar, Base
             
             DispatchQueue.main.async() {
                 self.titleView.status = cpc.presence;
+                self.updateTitleView();
             }
         case let e as RosterModule.ItemUpdatedEvent:
             guard e.sessionObject.userBareJid != nil && e.rosterItem != nil else {
@@ -334,7 +341,49 @@ class ChatViewController : BaseChatViewControllerWithContextMenuAndToolbar, Base
         DispatchQueue.main.async {
             self.titleView.connected = state != nil && state == .connected;
         }
+        #if targetEnvironment(simulator)
+        #else
+        let jingleSupported = JingleManager.instance.support(for: self.jid.withoutResource, on: self.account);
+        var count = jingleSupported.contains(.audio) ? 1 : 0;
+        if jingleSupported.contains(.video) {
+            count = count + 1;
+        }
+        DispatchQueue.main.async {
+            guard (self.navigationItem.rightBarButtonItems?.count ?? 0 != count) else {
+                return;
+            }
+            var buttons: [UIBarButtonItem] = [];
+            if jingleSupported.contains(.video) {
+                //buttons.append(UIBarButtonItem(image: UIImage(named: "videoCall"), style: .plain, target: self, action: #selector(self.videoCall)));
+                buttons.append(self.smallBarButtinItem(image: UIImage(named: "videoCall")!, action: #selector(self.videoCall)));
+            }
+            if jingleSupported.contains(.audio) {
+                //buttons.append(UIBarButtonItem(image: UIImage(named: "audioCall"), style: .plain, target: self, action: #selector(self.audioCall)));
+                buttons.append(self.smallBarButtinItem(image: UIImage(named: "audioCall")!, action: #selector(self.audioCall)));
+            }
+            self.navigationItem.rightBarButtonItems = buttons;
+        }
+        #endif
     }
+    
+    fileprivate func smallBarButtinItem(image: UIImage, action: Selector) -> UIBarButtonItem {
+        let btn = UIButton(type: .custom);
+        btn.setImage(image, for: .normal);
+        btn.addTarget(self, action: action, for: .touchUpInside);
+        btn.frame = CGRect(x: 0, y: 0, width: 30, height: 30);
+        return UIBarButtonItem(customView: btn);
+    }
+    
+    #if targetEnvironment(simulator)
+    #else
+    @objc func audioCall() {
+        VideoCallController.call(jid: self.jid.bareJid, from: self.account, withAudio: true, withVideo: false, sender: self);
+    }
+    
+    @objc func videoCall() {
+        VideoCallController.call(jid: self.jid.bareJid, from: self.account, withAudio: true, withVideo: true, sender: self);
+    }
+    #endif
     
     @objc func refreshChatHistory() {
         let syncPeriod = AccountSettings.MessageSyncPeriod(account.stringValue).getDouble();
@@ -515,6 +564,8 @@ class ChatViewController : BaseChatViewControllerWithContextMenuAndToolbar, Base
             
             self.addSubview(nameView);
             self.addSubview(statusView);
+//            self.nameView.textColor = UIColor.white;
+//            self.statusView.textColor = UIColor.white;
         }
         
         required init?(coder aDecoder: NSCoder) {
@@ -555,6 +606,8 @@ class ChatViewController : BaseChatViewControllerWithContextMenuAndToolbar, Base
             } else {
                 statusView.text = "\u{26A0} Not connected!";
             }
+            self.nameView.textColor = Appearance.current.navigationBarTextColor();
+            self.statusView.textColor = Appearance.current.navigationBarTextColor();
         }
     }
 }

@@ -22,7 +22,7 @@
 import UIKit
 import TigaseSwift
 
-class AccountSettingsViewController: UITableViewController, EventHandler {
+class AccountSettingsViewController: CustomTableViewController, EventHandler {
     
     var xmppService: XmppService!;
     
@@ -149,7 +149,7 @@ class AccountSettingsViewController: UITableViewController, EventHandler {
     func handle(event: Event) {
         switch event {
         case is SocketConnector.ConnectedEvent, is SocketConnector.DisconnectedEvent, is StreamManagementModule.ResumedEvent,
-             is SessionEstablishmentModule.SessionEstablishmentSuccessEvent, is DiscoveryModule.ServerFeaturesReceivedEvent:
+             is SessionEstablishmentModule.SessionEstablishmentSuccessEvent, is DiscoveryModule.ServerFeaturesReceivedEvent, is DiscoveryModule.AccountFeaturesReceivedEvent:
             DispatchQueue.main.async {
                 self.updateView();
             }
@@ -327,7 +327,7 @@ class AccountSettingsViewController: UITableViewController, EventHandler {
     
     
     func update(vcard: VCard?) {
-        avatarView.image = xmppService.avatarManager.getAvatar(for: accountJid, account: accountJid);
+        avatarView.image = xmppService.avatarManager.getAvatar(for: accountJid, account: accountJid, orDefault: xmppService.avatarManager.defaultAvatar);
         
         if let fn = vcard?.fn {
             fullNameTextView.text = fn;

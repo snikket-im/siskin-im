@@ -22,9 +22,12 @@
 import Foundation
 import UIKit
 
-class ServerSelectorTableViewCell: UITableViewCell {
+class ServerSelectorTableViewCell: CustomTableViewCell {
     
     @IBOutlet var serverDomain: UILabel!
-    
+ 
+    override func awakeFromNib() {
+        super.awakeFromNib();
+    }
     
 }

@@ -23,28 +23,28 @@ import UIKit
 import TigaseSwift
 
 protocol BaseChatViewController_ShareImageExtension: class {
-    
+
     var progressBar: UIProgressView! { get set }
     var shareButton: UIButton! { get set }
-    
+
     var imagePickerDelegate: BaseChatViewController_ShareImagePickerDelegate? { get set }
-    
+
     var xmppService: XmppService! { get }
     var account: BareJID! { get }
     var jid: JID! { get }
-    
-    
+
+
     func sendMessage(body: String, additional: [Element], preview: String?, completed: (()->Void)?);
-    
+
     func present(_ controller: UIViewController, animated: Bool, completion: (()->Void)?);
 }
 
 extension BaseChatViewController_ShareImageExtension {
-    
+
     func initSharing() {
         shareButton.isEnabled = Settings.SharingViaHttpUpload.getBool();
     }
-    
+
     func showPhotoSelector(_ sender: UIView) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet);
@@ -62,7 +62,7 @@ extension BaseChatViewController_ShareImageExtension {
             selectPhoto(.photoLibrary);
         }
     }
-    
+
     func selectPhoto(_ source: UIImagePickerController.SourceType) {
         let picker = UIImagePickerController();
         self.imagePickerDelegate = BaseChatViewController_ShareImagePickerDelegate(self);
@@ -75,24 +75,24 @@ extension BaseChatViewController_ShareImageExtension {
 }
 
 class BaseChatViewController_ShareImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate, URLSessionDelegate, URLSessionTaskDelegate {
-    
+
     let controller: BaseChatViewController_ShareImageExtension;
-    
+
     init(_ controller: BaseChatViewController_ShareImageExtension) {
         self.controller = controller;
     }
-    
+
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let photo = (info[UIImagePickerController.InfoKey.editedImage] as? UIImage) ?? (info[UIImagePickerController.InfoKey.originalImage] as? UIImage) else {
             return;
         }
         print("photo", photo.size, "originalImage", info[UIImagePickerController.InfoKey.originalImage] as Any);
         let imageName = "image.jpg";
-        
+
         // saving photo
         let data = photo.jpegData(compressionQuality: 0.9);
         picker.dismiss(animated: true, completion: nil);
-        
+
         if data != nil, let client = self.controller.xmppService.getClient(forJid: self.controller.account) {
             let httpUploadModule: HttpFileUploadModule = client.modulesManager.getModule(HttpFileUploadModule.ID)!;
             httpUploadModule.findHttpUploadComponent(onSuccess: { (results) in
@@ -116,7 +116,7 @@ class BaseChatViewController_ShareImagePickerDelegate: NSObject, UIImagePickerCo
                     self.showAlert(title: "Upload failed", message: "Selected image is too big!");
                     return;
                 }
-                
+
                 httpUploadModule.requestUploadSlot(componentJid: compJid!, filename: imageName, size: size, contentType: "image/jpeg", onSuccess: { (slot) in
                     DispatchQueue.main.async {
                         self.controller.progressBar.isHidden = false;
@@ -136,9 +136,9 @@ class BaseChatViewController_ShareImagePickerDelegate: NSObject, UIImagePickerCo
                         }
                         let x = Element(name: "x", xmlns: "jabber:x:oob");
                         x.addChild(Element(name: "url", cdata: slot.getUri.absoluteString));
-                        
+
                         ImageCache.shared.set(image: photo) { (key) in
-                            self.controller.sendMessage(body: slot.getUri.absoluteString, additional: [x], preview: key == nil ? nil : "preview:image:\(key!)", completed: nil);
+                            self.controller.sendMessage(body: slot.getUri.absoluteString, additional: [x], preview: "preview:image:\(key)", completed: nil);
                         }
                         }.resume();
                 }, onError: { (error, message) in
@@ -154,7 +154,7 @@ class BaseChatViewController_ShareImagePickerDelegate: NSObject, UIImagePickerCo
         }
         controller.imagePickerDelegate = nil;
     }
-    
+
     func showAlert(title: String, message: String) {
         DispatchQueue.main.async {
             self.controller.progressBar.isHidden = false;
@@ -163,12 +163,12 @@ class BaseChatViewController_ShareImagePickerDelegate: NSObject, UIImagePickerCo
             self.controller.present(alert, animated: true, completion: nil);
         }
     }
-    
+
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         controller.imagePickerDelegate = nil;
         picker.dismiss(animated: true, completion: nil);
     }
-    
+
     func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         self.controller.progressBar.progress = Float(totalBytesSent) / Float(totalBytesExpectedToSend);
         if self.controller.progressBar.progress == 1.0 {

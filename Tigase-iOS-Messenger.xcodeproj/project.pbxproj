@@ -11,24 +11,39 @@
 		FE00157F2019090300490340 /* ExperimentalSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE00157E2019090300490340 /* ExperimentalSettingsViewController.swift */; };
 		FE01ADA91E224CF400FA7E65 /* TigasePushNotificationsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01ADA81E224CF400FA7E65 /* TigasePushNotificationsModule.swift */; };
 		FE0A674D1D4F645F00124480 /* CachedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0A674C1D4F645F00124480 /* CachedViewController.swift */; };
+		FE137A4821F6464D006B7F7C /* UIColor_mix.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE137A4721F6464D006B7F7C /* UIColor_mix.swift */; };
+		FE137A4A21F72AEA006B7F7C /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE137A4921F72AEA006B7F7C /* Appearance.swift */; };
+		FE137A4C21F75660006B7F7C /* ChatBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE137A4B21F75660006B7F7C /* ChatBottomView.swift */; };
+		FE137A4E21F8851D006B7F7C /* CustomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE137A4D21F8851D006B7F7C /* CustomTableViewController.swift */; };
 		FE168ACD1CCD197A003F8B26 /* db-schema-1.sql in Resources */ = {isa = PBXBuildFile; fileRef = FE168ACC1CCD197A003F8B26 /* db-schema-1.sql */; };
 		FE1AC8F7216B8AB700D4CDAB /* NewFeaturesDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1AC8F6216B8AB700D4CDAB /* NewFeaturesDetector.swift */; };
 		FE1DCCA21EA52CE200850563 /* DataFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1DCCA11EA52CE200850563 /* DataFormController.swift */; };
+		FE233CD521E6846E00099281 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE233CD421E6846E00099281 /* CameraPreviewView.swift */; };
+		FE233CD921E9393C00099281 /* WebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FE233CD821E9393C00099281 /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FE233CDB21EA03DD00099281 /* Info.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE233CDA21EA03DD00099281 /* Info.storyboard */; };
+		FE233CDD21EA062E00099281 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE233CDC21EA062E00099281 /* AboutController.swift */; };
 		FE258EAA1F3B8BC90042CED9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE258EA91F3B8BC90042CED9 /* Assets.xcassets */; };
 		FE2809812167CE18002F5BD0 /* server_features_list.xml in Resources */ = {isa = PBXBuildFile; fileRef = FE2809802167CE18002F5BD0 /* server_features_list.xml */; };
 		FE2809832167CF1B002F5BD0 /* ServerFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2809822167CF1B002F5BD0 /* ServerFeaturesViewController.swift */; };
 		FE2A0E8E1F74012D006ADF08 /* db-schema-2.sql in Resources */ = {isa = PBXBuildFile; fileRef = FE2A0E8D1F74012D006ADF08 /* db-schema-2.sql */; };
 		FE2A0E901F74051E006ADF08 /* DBSchemaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2A0E8F1F74051E006ADF08 /* DBSchemaManager.swift */; };
 		FE3024321CE2036A00466497 /* DBVCardsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3024311CE2036A00466497 /* DBVCardsCache.swift */; };
+		FE31291A22240BEB00A92863 /* PEPBookmarksModule_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31291922240BEB00A92863 /* PEPBookmarksModule_extension.swift */; };
+		FE31291C222C0D1500A92863 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31291B222C0D1500A92863 /* AvatarView.swift */; };
 		FE31DDE4201261A200C2AB1D /* DNSSrvDiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31DDE3201261A200C2AB1D /* DNSSrvDiskCache.swift */; };
+		FE36B3C621F8E87700D1F037 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE36B3C521F8E87700D1F037 /* CustomTableViewCell.swift */; };
+		FE36B3C821FA52E000D1F037 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE36B3C721FA52E000D1F037 /* EmptyViewController.swift */; };
 		FE3A45CF1CE49D3300C36264 /* RosterItemEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3A45CE1CE49D3300C36264 /* RosterItemEditViewController.swift */; };
 		FE3DCCEE1FE18334008B6C8B /* CertificateErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3DCCED1FE18334008B6C8B /* CertificateErrorAlert.swift */; };
+		FE4071E421E2605900F09B58 /* VideoCallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4071E321E2605900F09B58 /* VideoCallController.swift */; };
+		FE4071E621E262D900F09B58 /* VoIP.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE4071E521E262D900F09B58 /* VoIP.storyboard */; };
+		FE4071E821E2653700F09B58 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4071E721E2653700F09B58 /* RoundButton.swift */; };
 		FE43EB551F3CC55900A4CAAD /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE43EB541F3CC55900A4CAAD /* ImageCache.swift */; };
 		FE43EB571F3DBAAE00A4CAAD /* BaseChatViewController_PreviewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE43EB561F3DBAAE00A4CAAD /* BaseChatViewController_PreviewExtension.swift */; };
 		FE4496C51F87934E009F649C /* db-schema-3.sql in Resources */ = {isa = PBXBuildFile; fileRef = FE4496C31F87911C009F649C /* db-schema-3.sql */; };
 		FE4DDF561F39E0B500A4CE5A /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4DDF551F39E0B500A4CE5A /* ShareViewController.swift */; };
 		FE4DDF591F39E0B500A4CE5A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE4DDF571F39E0B500A4CE5A /* MainInterface.storyboard */; };
-		FE4DDF5D1F39E0B500A4CE5A /* Tigase Messenger - Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FE4DDF531F39E0B500A4CE5A /* Tigase Messenger - Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FE4DDF5D1F39E0B500A4CE5A /* Siskin IM - Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FE4DDF531F39E0B500A4CE5A /* Siskin IM - Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FE4DDF641F3A181B00A4CE5A /* AccountsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4DDF631F3A181B00A4CE5A /* AccountsTableViewController.swift */; };
 		FE4DDF661F3A207200A4CE5A /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4DDF651F3A207200A4CE5A /* AccountTableViewCell.swift */; };
 		FE4DDF681F3A403900A4CE5A /* RecipientsSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4DDF671F3A403900A4CE5A /* RecipientsSelectionViewController.swift */; };
@@ -60,6 +75,11 @@
 		FE7F9303200FD5AC004C6195 /* AccountManagerScramSaltedPasswordCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7F9302200FD5AC004C6195 /* AccountManagerScramSaltedPasswordCache.swift */; };
 		FE80BDA81D928AD2001914B0 /* TigaseSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FE80BDA71D928AD2001914B0 /* TigaseSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FE80BDAB1D953FC4001914B0 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE80BDAA1D953FC4001914B0 /* SetupViewController.swift */; };
+		FE8DD9C3221B118E0090F5AA /* Groupchat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE8DD9C2221B118E0090F5AA /* Groupchat.storyboard */; };
+		FE8DD9C5221B153A0090F5AA /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8DD9C4221B153A0090F5AA /* InviteViewController.swift */; };
+		FE8DD9C7221B15DC0090F5AA /* AbstractRosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8DD9C6221B15DC0090F5AA /* AbstractRosterViewController.swift */; };
+		FE8DD9C9221B29520090F5AA /* MucNewGroupchatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8DD9C8221B29520090F5AA /* MucNewGroupchatController.swift */; };
+		FE8DD9CB221DBED80090F5AA /* db-schema-4.sql in Resources */ = {isa = PBXBuildFile; fileRef = FE8DD9CA221DBED80090F5AA /* db-schema-4.sql */; };
 		FE94E5251CCBA74F00FAE755 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE94E5241CCBA74F00FAE755 /* AppDelegate.swift */; };
 		FE94E52C1CCBA74F00FAE755 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE94E52A1CCBA74F00FAE755 /* Main.storyboard */; };
 		FE94E52E1CCBA74F00FAE755 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE94E52D1CCBA74F00FAE755 /* Assets.xcassets */; };
@@ -72,6 +92,8 @@
 		FE9E13731F260B33005C0EE5 /* StepperTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9E13721F260B33005C0EE5 /* StepperTableViewCell.swift */; };
 		FEA308D01F27A063002EF4C0 /* NavigationControllerWrappingSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA308CF1F27A063002EF4C0 /* NavigationControllerWrappingSegue.swift */; };
 		FEA370BE1F3F3F8B0050CBAC /* TigaseSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE80BDA71D928AD2001914B0 /* TigaseSwift.framework */; };
+		FEA7BF5B21E50C5800D9E36C /* JingleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BF5A21E50C5800D9E36C /* JingleManager.swift */; };
+		FEA7BF5D21E50CAB00D9E36C /* JingleManager_Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BF5C21E50CAB00D9E36C /* JingleManager_Session.swift */; };
 		FEA8D65D1F2F6AF60077C12F /* VCardEntryTypeAwareTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8D65C1F2F6AF60077C12F /* VCardEntryTypeAwareTableViewCell.swift */; };
 		FEA8D6621F30F54B0077C12F /* XmppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8D6611F30F54B0077C12F /* XmppService.swift */; };
 		FEA8D6641F30F9260077C12F /* XmppService_VCardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8D6631F30F9260077C12F /* XmppService_VCardExtension.swift */; };
@@ -119,7 +141,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				FE4DDF5D1F39E0B500A4CE5A /* Tigase Messenger - Share.appex in Embed App Extensions */,
+				FE4DDF5D1F39E0B500A4CE5A /* Siskin IM - Share.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,6 +152,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				FE233CD921E9393C00099281 /* WebRTC.framework in Embed Frameworks */,
 				FE80BDA81D928AD2001914B0 /* TigaseSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -142,22 +165,37 @@
 		FE00157E2019090300490340 /* ExperimentalSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalSettingsViewController.swift; sourceTree = "<group>"; };
 		FE01ADA81E224CF400FA7E65 /* TigasePushNotificationsModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TigasePushNotificationsModule.swift; sourceTree = "<group>"; };
 		FE0A674C1D4F645F00124480 /* CachedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedViewController.swift; sourceTree = "<group>"; };
+		FE137A4721F6464D006B7F7C /* UIColor_mix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor_mix.swift; sourceTree = "<group>"; };
+		FE137A4921F72AEA006B7F7C /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
+		FE137A4B21F75660006B7F7C /* ChatBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBottomView.swift; sourceTree = "<group>"; };
+		FE137A4D21F8851D006B7F7C /* CustomTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewController.swift; sourceTree = "<group>"; };
 		FE168ACC1CCD197A003F8B26 /* db-schema-1.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "db-schema-1.sql"; sourceTree = "<group>"; };
 		FE1AC8F6216B8AB700D4CDAB /* NewFeaturesDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFeaturesDetector.swift; sourceTree = "<group>"; };
 		FE1DCCA11EA52CE200850563 /* DataFormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFormController.swift; sourceTree = "<group>"; };
+		FE233CD421E6846E00099281 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		FE233CD821E9393C00099281 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
+		FE233CDA21EA03DD00099281 /* Info.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Info.storyboard; sourceTree = "<group>"; };
+		FE233CDC21EA062E00099281 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		FE258EA91F3B8BC90042CED9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE2809802167CE18002F5BD0 /* server_features_list.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = server_features_list.xml; sourceTree = "<group>"; };
 		FE2809822167CF1B002F5BD0 /* ServerFeaturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerFeaturesViewController.swift; sourceTree = "<group>"; };
 		FE2A0E8D1F74012D006ADF08 /* db-schema-2.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = "db-schema-2.sql"; sourceTree = "<group>"; };
 		FE2A0E8F1F74051E006ADF08 /* DBSchemaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSchemaManager.swift; sourceTree = "<group>"; };
 		FE3024311CE2036A00466497 /* DBVCardsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBVCardsCache.swift; sourceTree = "<group>"; };
+		FE31291922240BEB00A92863 /* PEPBookmarksModule_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PEPBookmarksModule_extension.swift; sourceTree = "<group>"; };
+		FE31291B222C0D1500A92863 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		FE31DDE3201261A200C2AB1D /* DNSSrvDiskCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSSrvDiskCache.swift; sourceTree = "<group>"; };
+		FE36B3C521F8E87700D1F037 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		FE36B3C721FA52E000D1F037 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		FE3A45CE1CE49D3300C36264 /* RosterItemEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RosterItemEditViewController.swift; sourceTree = "<group>"; };
 		FE3DCCED1FE18334008B6C8B /* CertificateErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateErrorAlert.swift; sourceTree = "<group>"; };
+		FE4071E321E2605900F09B58 /* VideoCallController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCallController.swift; sourceTree = "<group>"; };
+		FE4071E521E262D900F09B58 /* VoIP.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VoIP.storyboard; sourceTree = "<group>"; };
+		FE4071E721E2653700F09B58 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		FE43EB541F3CC55900A4CAAD /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		FE43EB561F3DBAAE00A4CAAD /* BaseChatViewController_PreviewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseChatViewController_PreviewExtension.swift; sourceTree = "<group>"; };
 		FE4496C31F87911C009F649C /* db-schema-3.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = "db-schema-3.sql"; sourceTree = "<group>"; };
-		FE4DDF531F39E0B500A4CE5A /* Tigase Messenger - Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Tigase Messenger - Share.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE4DDF531F39E0B500A4CE5A /* Siskin IM - Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Siskin IM - Share.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE4DDF551F39E0B500A4CE5A /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		FE4DDF581F39E0B500A4CE5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		FE4DDF5A1F39E0B500A4CE5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -196,7 +234,12 @@
 		FE80BDA91D92974C001914B0 /* Tigase-iOS-Messenger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tigase-iOS-Messenger.entitlements"; sourceTree = "<group>"; };
 		FE80BDAA1D953FC4001914B0 /* SetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		FE86C4481F7BFF93009E3CB8 /* Tigase-iOS-Messenger-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tigase-iOS-Messenger-Bridging-Header.h"; sourceTree = "<group>"; };
-		FE94E5211CCBA74F00FAE755 /* Tigase-iOS-Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tigase-iOS-Messenger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE8DD9C2221B118E0090F5AA /* Groupchat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Groupchat.storyboard; sourceTree = "<group>"; };
+		FE8DD9C4221B153A0090F5AA /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
+		FE8DD9C6221B15DC0090F5AA /* AbstractRosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractRosterViewController.swift; sourceTree = "<group>"; };
+		FE8DD9C8221B29520090F5AA /* MucNewGroupchatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MucNewGroupchatController.swift; sourceTree = "<group>"; };
+		FE8DD9CA221DBED80090F5AA /* db-schema-4.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = "db-schema-4.sql"; sourceTree = "<group>"; };
+		FE94E5211CCBA74F00FAE755 /* Tigase-iOS-Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Tigase-iOS-Messenger.app"; path = Siskin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE94E5241CCBA74F00FAE755 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE94E52B1CCBA74F00FAE755 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FE94E52D1CCBA74F00FAE755 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -209,6 +252,8 @@
 		FE9E13701F2606E9005C0EE5 /* ContactsSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSettingsViewController.swift; sourceTree = "<group>"; };
 		FE9E13721F260B33005C0EE5 /* StepperTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepperTableViewCell.swift; sourceTree = "<group>"; };
 		FEA308CF1F27A063002EF4C0 /* NavigationControllerWrappingSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationControllerWrappingSegue.swift; sourceTree = "<group>"; };
+		FEA7BF5A21E50C5800D9E36C /* JingleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JingleManager.swift; sourceTree = "<group>"; };
+		FEA7BF5C21E50CAB00D9E36C /* JingleManager_Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JingleManager_Session.swift; sourceTree = "<group>"; };
 		FEA8D65C1F2F6AF60077C12F /* VCardEntryTypeAwareTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCardEntryTypeAwareTableViewCell.swift; sourceTree = "<group>"; };
 		FEA8D6611F30F54B0077C12F /* XmppService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XmppService.swift; sourceTree = "<group>"; };
 		FEA8D6631F30F9260077C12F /* XmppService_VCardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XmppService_VCardExtension.swift; sourceTree = "<group>"; };
@@ -268,6 +313,17 @@
 			path = xmpp;
 			sourceTree = "<group>";
 		};
+		FE4071E221E2603400F09B58 /* voip */ = {
+			isa = PBXGroup;
+			children = (
+				FE4071E321E2605900F09B58 /* VideoCallController.swift */,
+				FEA7BF5A21E50C5800D9E36C /* JingleManager.swift */,
+				FEA7BF5C21E50CAB00D9E36C /* JingleManager_Session.swift */,
+				FE233CD421E6846E00099281 /* CameraPreviewView.swift */,
+			);
+			path = voip;
+			sourceTree = "<group>";
+		};
 		FE4DDF541F39E0B500A4CE5A /* Tigase Messenger - Share */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +357,8 @@
 				FE5628901F3621DB00452C73 /* ChatViewController_ShareExtension.swift */,
 				FE43EB561F3DBAAE00A4CAAD /* BaseChatViewController_PreviewExtension.swift */,
 				FEB5EC9C1F6AE448007FE0E7 /* BaseChatViewControllerWithContextMenuAndToolbar.swift */,
+				FE8DD9C4221B153A0090F5AA /* InviteViewController.swift */,
+				FE8DD9C8221B29520090F5AA /* MucNewGroupchatController.swift */,
 			);
 			path = chats;
 			sourceTree = "<group>";
@@ -329,6 +387,7 @@
 				FE96259F1D9AE7CB00D07118 /* RosterProvider.swift */,
 				FEDCBF661D9C3EE700AE9129 /* RosterProviderFlat.swift */,
 				FEDCBF681D9C53BA00AE9129 /* RosterProviderGrouped.swift */,
+				FE8DD9C6221B15DC0090F5AA /* AbstractRosterViewController.swift */,
 			);
 			path = roster;
 			sourceTree = "<group>";
@@ -367,6 +426,14 @@
 				FEA308CF1F27A063002EF4C0 /* NavigationControllerWrappingSegue.swift */,
 				FEFB63AC1F31E4EE00EFB3E7 /* MainTabBarController.swift */,
 				FE3DCCED1FE18334008B6C8B /* CertificateErrorAlert.swift */,
+				FE4071E721E2653700F09B58 /* RoundButton.swift */,
+				FE233CDC21EA062E00099281 /* AboutController.swift */,
+				FE137A4921F72AEA006B7F7C /* Appearance.swift */,
+				FE137A4B21F75660006B7F7C /* ChatBottomView.swift */,
+				FE137A4D21F8851D006B7F7C /* CustomTableViewController.swift */,
+				FE36B3C521F8E87700D1F037 /* CustomTableViewCell.swift */,
+				FE36B3C721FA52E000D1F037 /* EmptyViewController.swift */,
+				FE31291B222C0D1500A92863 /* AvatarView.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -380,6 +447,7 @@
 				FEB62C4F1DA80956001500D5 /* AvatarStore.swift */,
 				FE43EB541F3CC55900A4CAAD /* ImageCache.swift */,
 				FE7F9302200FD5AC004C6195 /* AccountManagerScramSaltedPasswordCache.swift */,
+				FE137A4721F6464D006B7F7C /* UIColor_mix.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -395,6 +463,7 @@
 		FE94E5181CCBA74F00FAE755 = {
 			isa = PBXGroup;
 			children = (
+				FE233CD821E9393C00099281 /* WebRTC.framework */,
 				FE60F29A1ED48B470030D411 /* Frameworks */,
 				FE94E55D1CCCC14E00FAE755 /* libsqlite3.tbd */,
 				FE94E5221CCBA74F00FAE755 /* Products */,
@@ -410,7 +479,7 @@
 			isa = PBXGroup;
 			children = (
 				FE94E5211CCBA74F00FAE755 /* Tigase-iOS-Messenger.app */,
-				FE4DDF531F39E0B500A4CE5A /* Tigase Messenger - Share.appex */,
+				FE4DDF531F39E0B500A4CE5A /* Siskin IM - Share.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -418,15 +487,19 @@
 		FE94E5231CCBA74F00FAE755 /* Tigase iOS Messenger */ = {
 			isa = PBXGroup;
 			children = (
+				FE4071E221E2603400F09B58 /* voip */,
 				FE86C4481F7BFF93009E3CB8 /* Tigase-iOS-Messenger-Bridging-Header.h */,
 				FE94E5241CCBA74F00FAE755 /* AppDelegate.swift */,
 				FE94E52D1CCBA74F00FAE755 /* Assets.xcassets */,
 				FE168ACC1CCD197A003F8B26 /* db-schema-1.sql */,
 				FE2A0E8D1F74012D006ADF08 /* db-schema-2.sql */,
 				FE4496C31F87911C009F649C /* db-schema-3.sql */,
+				FE8DD9CA221DBED80090F5AA /* db-schema-4.sql */,
 				FE94E5321CCBA74F00FAE755 /* Info.plist */,
 				FE94E52F1CCBA74F00FAE755 /* LaunchScreen.storyboard */,
 				FE94E52A1CCBA74F00FAE755 /* Main.storyboard */,
+				FE4071E521E262D900F09B58 /* VoIP.storyboard */,
+				FE8DD9C2221B118E0090F5AA /* Groupchat.storyboard */,
 				FE5079FD1CDB7B3B001A015C /* chats */,
 				FEDE93951D0C200C00CA60A9 /* contacts */,
 				FE507A021CDB7B3B001A015C /* database */,
@@ -437,6 +510,7 @@
 				FE507A121CDB7B3B001A015C /* util */,
 				FEDE938A1D08A4DD00CA60A9 /* vcard */,
 				FE01ADA11E214CEA00FA7E65 /* xmpp */,
+				FE233CDA21EA03DD00099281 /* Info.storyboard */,
 			);
 			path = "Tigase iOS Messenger";
 			sourceTree = "<group>";
@@ -450,6 +524,7 @@
 				FE31DDE3201261A200C2AB1D /* DNSSrvDiskCache.swift */,
 				FE00157C2017617B00490340 /* StreamFeaturesCache.swift */,
 				FE1AC8F6216B8AB700D4CDAB /* NewFeaturesDetector.swift */,
+				FE31291922240BEB00A92863 /* PEPBookmarksModule_extension.swift */,
 			);
 			path = service;
 			sourceTree = "<group>";
@@ -480,9 +555,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FE4DDF521F39E0B500A4CE5A /* Tigase Messenger - Share */ = {
+		FE4DDF521F39E0B500A4CE5A /* Siskin IM - Share */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FE4DDF5E1F39E0B600A4CE5A /* Build configuration list for PBXNativeTarget "Tigase Messenger - Share" */;
+			buildConfigurationList = FE4DDF5E1F39E0B600A4CE5A /* Build configuration list for PBXNativeTarget "Siskin IM - Share" */;
 			buildPhases = (
 				FE4DDF4F1F39E0B500A4CE5A /* Sources */,
 				FE4DDF501F39E0B500A4CE5A /* Frameworks */,
@@ -492,14 +567,14 @@
 			);
 			dependencies = (
 			);
-			name = "Tigase Messenger - Share";
+			name = "Siskin IM - Share";
 			productName = "Tigase Messenger - Share";
-			productReference = FE4DDF531F39E0B500A4CE5A /* Tigase Messenger - Share.appex */;
+			productReference = FE4DDF531F39E0B500A4CE5A /* Siskin IM - Share.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		FE94E5201CCBA74F00FAE755 /* Tigase-iOS-Messenger */ = {
+		FE94E5201CCBA74F00FAE755 /* Siskin IM */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FE94E54B1CCBA74F00FAE755 /* Build configuration list for PBXNativeTarget "Tigase-iOS-Messenger" */;
+			buildConfigurationList = FE94E54B1CCBA74F00FAE755 /* Build configuration list for PBXNativeTarget "Siskin IM" */;
 			buildPhases = (
 				FE94E51D1CCBA74F00FAE755 /* Sources */,
 				FE94E51E1CCBA74F00FAE755 /* Frameworks */,
@@ -514,7 +589,7 @@
 			dependencies = (
 				FE4DDF5C1F39E0B500A4CE5A /* PBXTargetDependency */,
 			);
-			name = "Tigase-iOS-Messenger";
+			name = "Siskin IM";
 			productName = "Tigase iOS Messenger";
 			productReference = FE94E5211CCBA74F00FAE755 /* Tigase-iOS-Messenger.app */;
 			productType = "com.apple.product-type.application";
@@ -569,6 +644,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -577,8 +653,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FE94E5201CCBA74F00FAE755 /* Tigase-iOS-Messenger */,
-				FE4DDF521F39E0B500A4CE5A /* Tigase Messenger - Share */,
+				FE94E5201CCBA74F00FAE755 /* Siskin IM */,
+				FE4DDF521F39E0B500A4CE5A /* Siskin IM - Share */,
 			);
 		};
 /* End PBXProject section */
@@ -597,10 +673,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE233CDB21EA03DD00099281 /* Info.storyboard in Resources */,
+				FE8DD9CB221DBED80090F5AA /* db-schema-4.sql in Resources */,
 				FE4496C51F87934E009F649C /* db-schema-3.sql in Resources */,
 				FE94E5311CCBA74F00FAE755 /* LaunchScreen.storyboard in Resources */,
 				FE2A0E8E1F74012D006ADF08 /* db-schema-2.sql in Resources */,
+				FE8DD9C3221B118E0090F5AA /* Groupchat.storyboard in Resources */,
 				FE94E52E1CCBA74F00FAE755 /* Assets.xcassets in Resources */,
+				FE4071E621E262D900F09B58 /* VoIP.storyboard in Resources */,
 				FE94E52C1CCBA74F00FAE755 /* Main.storyboard in Resources */,
 				FE168ACD1CCD197A003F8B26 /* db-schema-1.sql in Resources */,
 				FE2809812167CE18002F5BD0 /* server_features_list.xml in Resources */,
@@ -622,7 +702,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#\"${SRCROOT}/\"trim.sh TigaseSwift\n";
+			shellScript = "#\"${SRCROOT}/\"trim.sh TigaseSwift\n\"${SRCROOT}/\"trim.sh WebRTC\n";
 		};
 		FECD0F2A1CDB8B1B00420DF5 /* Mark TODO and FIX ME */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -636,7 +716,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/\"swiftScript.swift argumentOne argumentTwo";
+			shellScript = "\"${SRCROOT}/\"swiftScript.swift argumentOne argumentTwo\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -661,37 +741,49 @@
 				FEAC71791CECE50400ABABEF /* MucChatOccupantsTableViewController.swift in Sources */,
 				FEDE93971D0C202600CA60A9 /* ContactViewController.swift in Sources */,
 				FE1AC8F7216B8AB700D4CDAB /* NewFeaturesDetector.swift in Sources */,
+				FE4071E821E2653700F09B58 /* RoundButton.swift in Sources */,
 				FEAC717B1CECE70100ABABEF /* MucChatOccupantsTableViewCell.swift in Sources */,
 				FE7F9303200FD5AC004C6195 /* AccountManagerScramSaltedPasswordCache.swift in Sources */,
 				FE9625A01D9AE7CB00D07118 /* RosterProvider.swift in Sources */,
+				FE137A4C21F75660006B7F7C /* ChatBottomView.swift in Sources */,
 				FE3A45CF1CE49D3300C36264 /* RosterItemEditViewController.swift in Sources */,
 				FE507A211CDB7B3B001A015C /* SettingsViewController.swift in Sources */,
 				FE507A191CDB7B3B001A015C /* DBChatHistoryStore.swift in Sources */,
 				FEA8D65D1F2F6AF60077C12F /* VCardEntryTypeAwareTableViewCell.swift in Sources */,
 				FEB62C501DA80956001500D5 /* AvatarStore.swift in Sources */,
+				FE137A4821F6464D006B7F7C /* UIColor_mix.swift in Sources */,
 				FE507A1E1CDB7B3B001A015C /* RosterViewController.swift in Sources */,
 				FEDCBF691D9C53BA00AE9129 /* RosterProviderGrouped.swift in Sources */,
 				FEDE938C1D08AFE800CA60A9 /* VCardEditViewController.swift in Sources */,
+				FE36B3C821FA52E000D1F037 /* EmptyViewController.swift in Sources */,
 				FE507A161CDB7B3B001A015C /* ChatsListViewController.swift in Sources */,
+				FE8DD9C9221B29520090F5AA /* MucNewGroupchatController.swift in Sources */,
 				FE01ADA91E224CF400FA7E65 /* TigasePushNotificationsModule.swift in Sources */,
 				FE507A1F1CDB7B3B001A015C /* AccountTableViewCell.swift in Sources */,
 				FE7F645B1D281B1C00B9DF56 /* DBCapabilitiesCache.swift in Sources */,
 				FEDE93891D081C3D00CA60A9 /* Settings.swift in Sources */,
+				FE8DD9C5221B153A0090F5AA /* InviteViewController.swift in Sources */,
 				FEB5EC9D1F6AE448007FE0E7 /* BaseChatViewControllerWithContextMenuAndToolbar.swift in Sources */,
 				FE9E136F1F26049A005C0EE5 /* NotificationSettingsViewController.swift in Sources */,
 				FEA8D6641F30F9260077C12F /* XmppService_VCardExtension.swift in Sources */,
+				FE36B3C621F8E87700D1F037 /* CustomTableViewCell.swift in Sources */,
+				FE31291C222C0D1500A92863 /* AvatarView.swift in Sources */,
 				FE1DCCA21EA52CE200850563 /* DataFormController.swift in Sources */,
 				FE2A0E901F74051E006ADF08 /* DBSchemaManager.swift in Sources */,
 				FE6545641E9E8B67006A14AC /* ServerSelectorTableViewCell.swift in Sources */,
+				FE31291A22240BEB00A92863 /* PEPBookmarksModule_extension.swift in Sources */,
 				FE00157F2019090300490340 /* ExperimentalSettingsViewController.swift in Sources */,
 				FEDE93871D07564F00CA60A9 /* SwitchTableViewCell.swift in Sources */,
 				FE507A171CDB7B3B001A015C /* ChatTableViewCell.swift in Sources */,
 				FE31DDE4201261A200C2AB1D /* DNSSrvDiskCache.swift in Sources */,
+				FE233CDD21EA062E00099281 /* AboutController.swift in Sources */,
+				FE4071E421E2605900F09B58 /* VideoCallController.swift in Sources */,
 				FE9E13731F260B33005C0EE5 /* StepperTableViewCell.swift in Sources */,
 				FE6545601E9E7B85006A14AC /* RegisterAccountController.swift in Sources */,
 				FEC514221CEA3D2F003AF765 /* DBRoomsManager.swift in Sources */,
 				FE43EB571F3DBAAE00A4CAAD /* BaseChatViewController_PreviewExtension.swift in Sources */,
 				FE507A181CDB7B3B001A015C /* ChatViewController.swift in Sources */,
+				FE137A4E21F8851D006B7F7C /* CustomTableViewController.swift in Sources */,
 				FEFB63AD1F31E4EE00EFB3E7 /* MainTabBarController.swift in Sources */,
 				FE0A674D1D4F645F00124480 /* CachedViewController.swift in Sources */,
 				FEC514241CEB2FF7003AF765 /* MucJoinViewController.swift in Sources */,
@@ -701,11 +793,14 @@
 				FE43EB551F3CC55900A4CAAD /* ImageCache.swift in Sources */,
 				FE507A1C1CDB7B3B001A015C /* DBRosterStore.swift in Sources */,
 				FE94E5251CCBA74F00FAE755 /* AppDelegate.swift in Sources */,
+				FE137A4A21F72AEA006B7F7C /* Appearance.swift in Sources */,
 				FEF80DB21CDBBBFE005645A7 /* AccountSettingsViewController.swift in Sources */,
 				FE6545621E9E7FDE006A14AC /* AccountDomainTableViewCell.swift in Sources */,
 				FE507A231CDB7B3B001A015C /* CustomTabBarController.swift in Sources */,
 				FEA8D6621F30F54B0077C12F /* XmppService.swift in Sources */,
 				FE5628911F3621DB00452C73 /* ChatViewController_ShareExtension.swift in Sources */,
+				FE8DD9C7221B15DC0090F5AA /* AbstractRosterViewController.swift in Sources */,
+				FEA7BF5D21E50CAB00D9E36C /* JingleManager_Session.swift in Sources */,
 				FE507A1A1CDB7B3B001A015C /* DBChatStore.swift in Sources */,
 				FE80BDAB1D953FC4001914B0 /* SetupViewController.swift in Sources */,
 				FEE097621F1FCE1800B1CEAB /* TablePicketViewController.swift in Sources */,
@@ -729,8 +824,10 @@
 				FE3024321CE2036A00466497 /* DBVCardsCache.swift in Sources */,
 				FE507A1B1CDB7B3B001A015C /* DBManager.swift in Sources */,
 				FE507A241CDB7B3B001A015C /* GlobalSplitViewController.swift in Sources */,
+				FE233CD521E6846E00099281 /* CameraPreviewView.swift in Sources */,
 				FE507A261CDB7B3B001A015C /* AvatarManager.swift in Sources */,
 				FEA308D01F27A063002EF4C0 /* NavigationControllerWrappingSegue.swift in Sources */,
+				FEA7BF5B21E50C5800D9E36C /* JingleManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,7 +836,7 @@
 /* Begin PBXTargetDependency section */
 		FE4DDF5C1F39E0B500A4CE5A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FE4DDF521F39E0B500A4CE5A /* Tigase Messenger - Share */;
+			target = FE4DDF521F39E0B500A4CE5A /* Siskin IM - Share */;
 			targetProxy = FE4DDF5B1F39E0B500A4CE5A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -857,6 +954,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -916,6 +1014,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -926,6 +1025,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tigase iOS Messenger/Tigase-iOS-Messenger-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -956,10 +1056,10 @@
 					"$(SDK_DIR)/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "Tigase iOS Messenger/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.tigase.messenger.mobile;
-				PRODUCT_NAME = "Tigase-iOS-Messenger";
+				PRODUCT_NAME = Siskin;
 				PROVISIONING_PROFILE = "";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Modules/";
@@ -988,10 +1088,11 @@
 					"$(SDK_DIR)/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "Tigase iOS Messenger/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.tigase.messenger.mobile;
-				PRODUCT_NAME = "Tigase-iOS-Messenger";
+				PRODUCT_NAME = Siskin;
 				PROVISIONING_PROFILE = "";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Modules/";
@@ -1003,7 +1104,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FE4DDF5E1F39E0B600A4CE5A /* Build configuration list for PBXNativeTarget "Tigase Messenger - Share" */ = {
+		FE4DDF5E1F39E0B600A4CE5A /* Build configuration list for PBXNativeTarget "Siskin IM - Share" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FE4DDF5F1F39E0B600A4CE5A /* Debug */,
@@ -1021,7 +1122,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FE94E54B1CCBA74F00FAE755 /* Build configuration list for PBXNativeTarget "Tigase-iOS-Messenger" */ = {
+		FE94E54B1CCBA74F00FAE755 /* Build configuration list for PBXNativeTarget "Siskin IM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FE94E54C1CCBA74F00FAE755 /* Debug */,

@@ -22,6 +22,8 @@
 import UIKit
 import UserNotifications
 import TigaseSwift
+//import CallKit
+import WebRTC
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -29,13 +31,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
     var xmppService:XmppService!;
     var dbConnection:DBConnection!;
+//    var callProvider: CXProvider?;
     fileprivate var defaultKeepOnlineOnAwayTime = TimeInterval(3 * 60);
     fileprivate var keepOnlineOnAwayTimer: TigaseSwift.Timer?;
     
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        RTCInitFieldTrialDictionary([:]);
+        RTCInitializeSSL();
+        RTCSetupInternalTracer();
         Log.initialize();
         Settings.initialize();
         AccountSettings.initialize();
+        Appearance.current = Appearance.values.first(where: { (appearance) -> Bool in
+            return appearance.id == (Settings.AppearanceTheme.getString() ?? "classic");
+        }) ?? Appearance.values.first!;
+//        Appearance.current = OrioleLightAppearance();
+//        //Appearance.current = PurpleLightAppearance();
+//        Appearance.current = PurpleDarkAppearance();
+//        Appearance.current = ClassicAppearance();
         do {
             dbConnection = try DBConnection(dbFilename: "mobile_messenger1.db");
             try DBSchemaManager(dbConnection: dbConnection).upgradeSchema();
@@ -55,6 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.serverCertificateError), name: XmppService.SERVER_CERTIFICATE_ERROR, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.authenticationFailure), name: XmppService.AUTHENTICATION_FAILURE, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.presenceAuthorizationRequest), name: XmppService.PRESENCE_AUTHORIZATION_REQUEST, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.mucRoomInvitationReceived), name: XmppService.MUC_ROOM_INVITATION, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.pushNotificationRegistrationFailed), name: Notification.Name("pushNotificationsRegistrationFailed"), object: nil);
         updateApplicationIconBadgeNumber(completionHandler: nil);
         
@@ -65,6 +79,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SetupViewController");
         }
         
+//        let callConfig = CXProviderConfiguration(localizedName: "Tigase Messenger");
+//        self.callProvider = CXProvider(configuration: callConfig);
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5.0) {
+//            let uuid = UUID();
+//            let handle = CXHandle(type: CXHandle.HandleType.generic, value: "andrzej.wojcik@tigase.org");
+//
+//            let startCallAction = CXStartCallAction(call: uuid, handle: handle);
+//            startCallAction.handle = handle;
+//
+//            let transaction = CXTransaction(action: startCallAction);
+//            let callController = CXCallController();
+//            callController.request(transaction, completion: { (error) in
+//                CXErrorCodeRequestTransactionError.invalidAction
+//                print("call request:", error?.localizedDescription);
+//            })
+//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 30.0, execute: {
+//                print("finished!", callController);
+//            })
+//        }
+//
         return true
     }
 
@@ -130,6 +164,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        RTCShutdownInternalTracer();
+        RTCCleanupSSL();
         print(NSDate(), "application terminated!")
     }
 
@@ -234,6 +270,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             topController?.present(alert, animated: true, completion: nil);
         }
+        if content.categoryIdentifier == "MUC_ROOM_INVITATION" {
+            guard let account = BareJID(content.userInfo["account"] as? String), let roomJid: BareJID = BareJID(content.userInfo["roomJid"] as? String) else {
+                return;
+            }
+            
+            let password = content.userInfo["password"] as? String;
+            
+            let navController = UIStoryboard(name: "Groupchat", bundle: nil).instantiateViewController(withIdentifier: "MucJoinNavigationController") as! UINavigationController;
+
+            let controller = navController.visibleViewController! as! MucJoinViewController;
+            _ = controller.view;
+            controller.accountTextField.text = account.stringValue;
+            controller.roomTextField.text = roomJid.localPart;
+            controller.serverTextField.text = roomJid.domain;
+            controller.passwordTextField.text = password;
+            
+            var topController = UIApplication.shared.keyWindow?.rootViewController;
+            while (topController?.presentedViewController != nil) {
+                topController = topController?.presentedViewController;
+            }
+//            let navController = UINavigationController(rootViewController: controller);
+            navController.modalPresentationStyle = .formSheet;
+            topController?.present(navController, animated: true, completion: nil);
+        }
         if content.categoryIdentifier == "MESSAGE" {
             let senderJid = BareJID(userInfo["sender"] as! String);
             let accountJid = BareJID(userInfo["account"] as! String);
@@ -259,7 +319,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 print("No top controller!");
             }
         }
-        
+        #if targetEnvironment(simulator)
+        #else
+        if content.categoryIdentifier == "CALL" {
+            let senderName = userInfo["senderName"] as! String;
+            let senderJid = JID(userInfo["sender"] as! String);
+            let accountJid = BareJID(userInfo["account"] as! String);
+            let sdp = userInfo["sdpOffer"] as! String;
+            let sid = userInfo["sid"] as! String;
+            
+            var topController = UIApplication.shared.keyWindow?.rootViewController;
+            while (topController?.presentedViewController != nil) {
+                topController = topController?.presentedViewController;
+            }
+            
+            if let session = JingleManager.instance.session(for: accountJid, with: senderJid, sid: sid) {
+                // can still can be received!
+                let alert = UIAlertController(title: "Incoming call", message: "Incoming call from \(senderName)", preferredStyle: .alert);
+                switch AVCaptureDevice.authorizationStatus(for: .video) {
+                case .denied, .restricted:
+                    break;
+                default:
+                    alert.addAction(UIAlertAction(title: "Video call", style: .default, handler: { action in
+                        // accept video
+                        VideoCallController.accept(session: session, sdpOffer: sdp, withAudio: true, withVideo: true, sender: topController!);
+                    }))
+                }
+                alert.addAction(UIAlertAction(title: "Audio call", style: .default, handler: { action in
+                    VideoCallController.accept(session: session, sdpOffer: sdp, withAudio: true, withVideo: false, sender: topController!);
+                }));
+                alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { action in
+                    _ = session.decline();
+                }));
+                topController?.present(alert, animated: true, completion: nil);
+            } else {
+                // call missed...
+                let alert = UIAlertController(title: "Missed call", message: "Missed incoming call from \(senderName)", preferredStyle: .alert);
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil));
+                
+                topController?.present(alert, animated: true, completion: nil);
+            }
+        }
+        #endif
         completionHandler();
     }
     
@@ -485,6 +586,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         content.categoryIdentifier = "ERROR";
         content.userInfo = ["account": account!.stringValue];
         UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil));
+    }
+    
+    @objc func mucRoomInvitationReceived(_ notification: Notification) {
+        guard let e = notification.object as? MucModule.InvitationReceivedEvent, let account = e.sessionObject.userBareJid else {
+            return;
+        }
+        
+        let content = UNMutableNotificationContent();
+        content.body = "Invitation to groupchat \(e.invitation.roomJid.stringValue)";
+        if let from = e.invitation.inviter, let name = RosterModule.getRosterStore(e.sessionObject).get(for: from) {
+            content.body = "\(content.body) from \(name)";
+        }
+        content.threadIdentifier = "mucRoomInvitation=" + account.stringValue + "|room=" + e.invitation.roomJid.stringValue;
+        content.categoryIdentifier = "MUC_ROOM_INVITATION";
+        content.userInfo = ["account": account.stringValue, "roomJid": e.invitation.roomJid.stringValue, "password": e.invitation.password as Any];
+        UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil), withCompletionHandler: nil);
     }
     
     func updateApplicationIconBadgeNumber(completionHandler: (()->Void)?) {

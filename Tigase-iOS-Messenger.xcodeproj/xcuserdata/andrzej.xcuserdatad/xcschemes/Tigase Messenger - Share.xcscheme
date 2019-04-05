@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FE4DDF521F39E0B500A4CE5A"
-               BuildableName = "Tigase Messenger - Share.appex"
-               BlueprintName = "Tigase Messenger - Share"
+               BuildableName = "Siskin IM - Share.appex"
+               BlueprintName = "Siskin IM - Share"
                ReferencedContainer = "container:Tigase-iOS-Messenger.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -30,8 +30,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FE94E5201CCBA74F00FAE755"
-               BuildableName = "Tigase-iOS-Messenger.app"
-               BlueprintName = "Tigase-iOS-Messenger"
+               BuildableName = "Siskin.app"
+               BlueprintName = "Siskin IM"
                ReferencedContainer = "container:Tigase-iOS-Messenger.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -48,8 +48,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FE4DDF521F39E0B500A4CE5A"
-            BuildableName = "Tigase Messenger - Share.appex"
-            BlueprintName = "Tigase Messenger - Share"
+            BuildableName = "Siskin IM - Share.appex"
+            BlueprintName = "Siskin IM - Share"
             ReferencedContainer = "container:Tigase-iOS-Messenger.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -72,8 +72,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FE94E5201CCBA74F00FAE755"
-            BuildableName = "Tigase-iOS-Messenger.app"
-            BlueprintName = "Tigase-iOS-Messenger"
+            BuildableName = "Siskin.app"
+            BlueprintName = "Siskin IM"
             ReferencedContainer = "container:Tigase-iOS-Messenger.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -92,8 +92,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FE94E5201CCBA74F00FAE755"
-            BuildableName = "Tigase-iOS-Messenger.app"
-            BlueprintName = "Tigase-iOS-Messenger"
+            BuildableName = "Siskin.app"
+            BlueprintName = "Siskin IM"
             ReferencedContainer = "container:Tigase-iOS-Messenger.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

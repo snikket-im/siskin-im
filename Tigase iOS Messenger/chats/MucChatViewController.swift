@@ -24,6 +24,8 @@ import TigaseSwift
 
 class MucChatViewController: BaseChatViewControllerWithContextMenuAndToolbar, BaseChatViewControllerWithContextMenuAndToolbarDelegate, CachedViewControllerProtocol, UITableViewDataSource, EventHandler, BaseChatViewController_ShareImageExtension, BaseChatViewController_PreviewExtension {
 
+    static let MENTION_OCCUPANT = Notification.Name("groupchatMentionOccupant");
+    
     var titleView: MucTitleView!;
     var room: Room?;
 
@@ -38,8 +40,14 @@ class MucChatViewController: BaseChatViewControllerWithContextMenuAndToolbar, Ba
     @IBOutlet var progressBar: UIProgressView!;
     var imagePickerDelegate: BaseChatViewController_ShareImagePickerDelegate?;
 
+        lazy var loadChatInfo:DBStatement! = try? self.dbConnection.prepareStatement("SELECT name FROM chats WHERE account = :account AND jid = :jid");
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let params:[String:Any?] = ["account" : account, "jid" : jid.bareJid];
+        navigationItem.title = try! loadChatInfo.findFirst(params) { cursor in cursor["name"] } ?? jid.stringValue;
+
         dataSource = MucChatDataSource(controller: self);
         contextMenuDelegate = self;
         scrollDelegate = self;
@@ -117,11 +125,12 @@ class MucChatViewController: BaseChatViewControllerWithContextMenuAndToolbar, Ba
         cell.transform = dataSource.inverted ? CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: 0) : CGAffineTransform.identity;
         cell.nicknameLabel?.text = item.nickname;
         if item.authorJid != nil {
-            cell.avatarView?.image = self.xmppService.avatarManager.getAvatar(for: item.authorJid!, account: self.account);
+            cell.avatarView?.updateAvatar(manager: self.xmppService.avatarManager, for: self.account, with: item.authorJid!, name: item.nickname, orDefault: self.xmppService.avatarManager.defaultGroupchatAvatar);
         } else {
             cell.avatarView?.image = self.xmppService.avatarManager.defaultAvatar;
         }
         cell.setValues(data: item.data, ts: item.timestamp, id: item.id, state: state, preview: item.preview, downloader: self.downloadPreview);
+        cell.backgroundColor = Appearance.current.tableViewCellBackgroundColor();
         return cell;
     }
 
@@ -132,6 +141,25 @@ class MucChatViewController: BaseChatViewControllerWithContextMenuAndToolbar, Ba
                 if let occupantsController = navigation.visibleViewController as? MucChatOccupantsTableViewController {
                     occupantsController.room = room;
                     occupantsController.account = account;
+                    occupantsController.mentionOccupant = { [weak self] name in
+                        var text = self?.messageText ?? "";
+                        if text.last != " " {
+                            text = text + " ";
+                        }
+                        self?.messageText = "\(text)@\(name) ";
+                    }
+                }
+            } else {
+                if let occupantsController = segue.destination as? MucChatOccupantsTableViewController {
+                    occupantsController.room = room;
+                    occupantsController.account = account;
+                    occupantsController.mentionOccupant = { [weak self] name in
+                        var text = self?.messageText ?? "";
+                        if text.last != " " {
+                            text = text + " ";
+                        }
+                        self?.messageText = "\(text)@\(name) ";
+                    }
                 }
             }
         }
@@ -140,7 +168,6 @@ class MucChatViewController: BaseChatViewControllerWithContextMenuAndToolbar, Ba
     func getTextOfSelectedRows(paths: [IndexPath], withTimestamps: Bool, handler: (([String]) -> Void)?) {
         let items: [MucChatViewItem] = paths.map({ index in dataSource.getItem(for: index) })
             .filter { (it) -> Bool in it != nil }
-            .map({(it) in it! })
             .sorted { (it1, it2) -> Bool in
                 it1.timestamp.compare(it2.timestamp) == .orderedAscending;
         };
@@ -216,6 +243,8 @@ class MucChatViewController: BaseChatViewControllerWithContextMenuAndToolbar, Ba
         let state = xmppService.getClient(forJid: self.account)?.state;
         DispatchQueue.main.async {
             self.titleView.connected = state != nil && state == .connected;
+            self.titleView.nameView.textColor = Appearance.current.navigationBarTextColor();
+            self.titleView.statusView.textColor = Appearance.current.navigationBarTextColor();
         }
     }
 
@@ -286,7 +315,7 @@ class MucChatViewController: BaseChatViewControllerWithContextMenuAndToolbar, Ba
     func refreshRoomInfo(_ room: Room) {
         titleView.state = room.state;
     }
-
+    
     class MucChatDataSource: CachedViewDataSource<MucChatViewItem> {
 
         fileprivate let getMessagesStmt: DBStatement!;

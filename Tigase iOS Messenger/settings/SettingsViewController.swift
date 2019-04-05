@@ -23,7 +23,7 @@
 import UIKit
 import TigaseSwift
 
-class SettingsViewController: UITableViewController, EventHandler {
+class SettingsViewController: CustomTableViewController, EventHandler {
    
     var statusNames = [
         "chat" : "Chat",
@@ -64,8 +64,12 @@ class SettingsViewController: UITableViewController, EventHandler {
         case 2:
             return "Settings";
         default:
-            return nil;
+            return "";
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return nil;
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,7 +79,7 @@ class SettingsViewController: UITableViewController, EventHandler {
         case 1:
             return 2;
         case 2:
-            return 4;
+            return 6;
         default:
             return 0;
         }
@@ -92,7 +96,7 @@ class SettingsViewController: UITableViewController, EventHandler {
                 let account = AccountManager.getAccount(forJid: accounts[indexPath.row]);
                 cell.nameLabel.text = account?.name;
                 let jid = BareJID(account!.name);
-                cell.avatarStatusView.setAvatar(xmppService.avatarManager.getAvatar(for: jid, account: BareJID(account!.name)));
+                cell.avatarStatusView.updateAvatar(manager: xmppService.avatarManager, for: BareJID(account!.name), with: jid, name: nil, orDefault: xmppService.avatarManager.defaultAvatar);
                 if let client = xmppService.getClient(forJid: jid) {
                     cell.avatarStatusView.statusImageView.isHidden = false;
                     var status: Presence.Show? = nil;
@@ -114,7 +118,7 @@ class SettingsViewController: UITableViewController, EventHandler {
                 cell.avatarStatusView.updateCornerRadius();
             } else {
                 cell.nameLabel.text = "Add account";
-                cell.avatarStatusView.setAvatar(nil);
+                cell.avatarStatusView.resetAvatar();
                 cell.avatarStatusView.isHidden = true;
             }
             return cell;
@@ -127,7 +131,7 @@ class SettingsViewController: UITableViewController, EventHandler {
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "StatusTypeSettingsViewCell", for: indexPath);
                 let type = Settings.StatusType.getString();
-                if let image = type != nil ? getStatusIconForActionIcon(named: "presence_\(type!)") : nil {
+                if let image = type != nil ? getStatusIconForActionIcon(named: "presence_\(type!)", size: 55, withBorder: false) : nil {
                     (cell.contentView.subviews[0] as? UIImageView)?.image = image;
                     (cell.contentView.subviews[0] as? UIImageView)?.isHidden = false;
                 } else {
@@ -139,19 +143,27 @@ class SettingsViewController: UITableViewController, EventHandler {
             }
         } else {
             if indexPath.row == 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ChatSettingsViewCell", for: indexPath);
+                let cell = tableView.dequeueReusableCell(withIdentifier: "AppearanceViewCell", for: indexPath);
                 cell.accessoryType = .disclosureIndicator;
                 return cell;
             } else if indexPath.row == 1 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ContactsSettingsViewCell", for: indexPath);
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ChatSettingsViewCell", for: indexPath);
                 cell.accessoryType = .disclosureIndicator;
                 return cell;
             } else if indexPath.row == 2 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ContactsSettingsViewCell", for: indexPath);
+                cell.accessoryType = .disclosureIndicator;
+                return cell;
+            } else if indexPath.row == 3 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationSettingsViewCell", for: indexPath);
                 cell.accessoryType = .disclosureIndicator;
                 return cell;
-            } else {
+            } else if indexPath.row == 4 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ExperimentalSettingsViewCell", for: indexPath);
+                cell.accessoryType = .disclosureIndicator;
+                return cell;
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "AboutSettingsViewCell", for: indexPath);
                 cell.accessoryType = .disclosureIndicator;
                 return cell;
             }
@@ -159,6 +171,7 @@ class SettingsViewController: UITableViewController, EventHandler {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        super.tableView(tableView, willDisplay: cell, forRowAt: indexPath);
         if let accountCell = cell as? AccountTableViewCell {
             accountCell.avatarStatusView.updateCornerRadius();
         }
@@ -201,7 +214,7 @@ class SettingsViewController: UITableViewController, EventHandler {
                         self.tableView.reloadData();                        
                     };
                     if type != nil {
-                        action.setValue(getStatusIconForActionIcon(named: "presence_\(type!)"), forKey: "image")
+                        action.setValue(getStatusIconForActionIcon(named: "presence_\(type!)", size: 36, withBorder: true), forKey: "image")
                     }
                     alert.addAction(action);
                 }
@@ -225,6 +238,45 @@ class SettingsViewController: UITableViewController, EventHandler {
                 }));
                 self.present(alert, animated: true, completion: nil);
             }
+        } else if indexPath.section == 2 {
+            if indexPath.row == 0 {
+                let controller = TablePickerViewController(style: .grouped);
+                controller.title = "Select theme";
+                controller.selected = Appearance.values.map({ (it) -> String in
+                    return it.id
+                }).firstIndex(of: Appearance.current.id) ?? 0;
+                controller.items = Appearance.values.map({ (it)->ThemeSelector in
+                    return ThemeSelector(value: it);
+                });
+                //controller.selected = 1;
+                controller.onSelectionChange = { [weak controller] (_item) -> Void in
+                    let item = _item as! ThemeSelector;
+                    Appearance.current = item.value;
+                    let tmp = UIViewController();
+                    tmp.view.backgroundColor = Appearance.current.tableViewBackgroundColor();
+                    controller?.navigationController?.pushViewController(tmp, animated: true);
+                    DispatchQueue.main.async {
+                        controller?.navigationController?.popViewController(animated: true);
+                    }
+                    Settings.AppearanceTheme.setValue(item.value.id);
+//                    controller?.navigationController?.popViewController(animated: true);
+                };
+                let navController = UINavigationController(rootViewController: controller);
+                navController.navigationBar.isTranslucent = false;
+                controller.hidesBottomBarWhenPushed = true;
+                self.showDetailViewController(navController, sender: self);
+//                self.navigationController?.pushViewController(controller, animated: true);
+            }
+        }
+    }
+    
+    internal class ThemeSelector: TablePickerViewItemsProtocol {
+        let description: String;
+        let value: Appearance;
+        
+        init(value: Appearance) {
+            self.value = value;
+            self.description = value.name;
         }
     }
 
@@ -298,16 +350,45 @@ class SettingsViewController: UITableViewController, EventHandler {
         self.showDetailViewController(navigationController, sender: self);
     }
     
-    fileprivate func getStatusIconForActionIcon(named: String) -> UIImage? {
+    fileprivate func getStatusIconForActionIcon(named: String, size: Int, withBorder: Bool) -> UIImage? {
         guard var image = UIImage(named: named) else {
             return nil;
         }
-        let newSize = CGSize(width: image.size.width * 0.5, height: image.size.height * 0.5);
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0);
-        image.draw(in: CGRect(origin: CGPoint(x: 0, y: 0), size: newSize));
+        
+        let boxSize = CGSize(width: size, height: size);
+        let imageSize = CGSize(width: (size*2)/3, height: (size*2)/3);
+        
+        let imageRect = CGRect(origin: CGPoint(x: (boxSize.width - imageSize.width)/2, y: (boxSize.height - imageSize.height)/2), size: imageSize);
+        
+        UIGraphicsBeginImageContextWithOptions(boxSize, false, 0);
+        if withBorder {
+            let ctx = UIGraphicsGetCurrentContext();
+            let path = CGPath(ellipseIn: imageRect, transform: nil);
+            ctx?.addPath(path);
+        
+            ctx?.setFillColor(UIColor.white.cgColor);
+//        ctx?.fill(imageRect);
+            ctx?.fillPath();
+        }
+        image.draw(in: imageRect);
         image = UIGraphicsGetImageFromCurrentImageContext()!;
         UIGraphicsEndImageContext();
         return image.withRenderingMode(.alwaysOriginal);
     }
-    
+
+    fileprivate func getStatusIconForActionIconOld(named: String) -> UIImage? {
+        guard var image = UIImage(named: named) else {
+            return nil;
+        }
+        let newSize = CGSize(width: image.size.width * 1.5, height: image.size.height * 1.5);
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0);
+        let ctx = UIGraphicsGetCurrentContext();
+        ctx?.setFillColor(UIColor.white.cgColor);
+        ctx?.fill(CGRect(origin: .zero, size: newSize));
+        image.draw(in: CGRect(origin: CGPoint(x: image.size.width * 0.25, y: image.size.height * 0.25), size: image.size));
+        image = UIGraphicsGetImageFromCurrentImageContext()!;
+        UIGraphicsEndImageContext();
+        return image.withRenderingMode(.alwaysOriginal);
+    }
+
 }
